@@ -1,0 +1,1 @@
+# GSuite-as-identity-Provider-IdP-for-AWS--Amazon-Web-Services-
