@@ -4,14 +4,12 @@ _Use GSuite accounts for AWS_
 ## Google Admin pre-requirements
 
 ### Add custom user attributes (for AWS SAML binding attributes)
-_[Gsuite Admin Help](https://support.google.com/a/answer/6208725?hl=en)_
+_[Gsuite Admin Help](https://support.google.com/a/answer/6208725?hl=en)_    
+_[AWS Docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_assertions.html)_    
+_[GSuite Admin > Users > Manage user attributes](https://admin.google.com/ac/customschema)_    
 
-_[AWS Docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_assertions.html)_
-
-> [GSuite Admin > Users > Manage user attributes](https://admin.google.com/ac/customschema)
-
-1. Add AWS SAML Role Attribute (Text, Multi-value)
-2. (Optional) Add AWS SAML RoleSessionName Attribute (Text, Single Value)
+> 1. Add AWS SAML Role Attribute (Text, Multi-value)
+> 2. (Optional) Add AWS SAML RoleSessionName Attribute (Text, Single Value)
 
 ![AWS SAML Custom Attributes](https://imgur.com/L9MolFj.png)
 
@@ -28,8 +26,8 @@ _[AWS Docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_
 ![Download IDP Metadata](https://i.imgur.com/TWNjNV2.png)
 
 ### Edit Service Provider Details
-> Name ID = Basic Information > Primary Email    
-> Name ID Format = Email    
+_Name ID = Basic Information > Primary Email_    
+_Name ID Format = Email_    
 
 ![Edit Service Provider Details](https://i.imgur.com/EuwpgUk.png)
 
@@ -52,9 +50,9 @@ _[AWS Docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_
 ![AWS > IAM > Access management > Identity providers List](https://i.imgur.com/Jcyb5c3.png)
 
 ### Configure Provider
-> Set a friendly name    
-> Set provider type to SAML    
-> Select the Gsuite IDP Metadata (XML file)    
+_Set a friendly name_    
+_Set provider type to SAML_    
+_Select the Gsuite IDP Metadata (XML file)_    
 
 ![Configure Provider > SAML](https://i.imgur.com/6o0HVm1.png)
 
@@ -68,23 +66,27 @@ _If an user has 2+ assigned roles, he can chose the desired role_
 ![AWS > IAM > Access management > Roles](https://i.imgur.com/L7PouEQ.png)
 
 ### Create SAML Role (Administrator)
-> [AWS > IAM > Access management > Roles > Create role](https://console.aws.amazon.com/iam/home#/roles$new?step=type&roleType=saml)    
+_[AWS > IAM > Access management > Roles > Create role](https://console.aws.amazon.com/iam/home#/roles$new?step=type&roleType=saml)_    
 
 ![Create SAML Role](https://i.imgur.com/kAnD8Pm.png)
 
-> Select AdministratorAccess policy    
-> Name: Administrator    
+_Select AdministratorAccess policy_    
+_Name: Administrator_    
+
 ![Create SAML Role - Administrator](https://i.imgur.com/ziICWgY.png)
 
 ### Create SAML Role (ViewOnlyAccess)
-> Do the same as for Administrator but with the ViewOnlyAccess policy    
-> Name: ViewOnlyAccess    
+_Do the same as for Administrator but with the ViewOnlyAccess policy_    
+_Name: ViewOnlyAccess_    
+
 ![Create SAML Role - ViewOnlyAccess](https://i.imgur.com/bHfugfF.png)
+
+_As we can see here we have now 2 new roles Administrator and ViewOnlyAccess_    
 
 ![Create roles Done](https://i.imgur.com/tfaJ2cF.png)
 
 ## Configure GSuite role (user attribute)
-_[AWS Doc](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_assertions.html)_    
+> [AWS Doc](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_saml_assertions.html)    
 
 ### Find Role(s) ARN
 ![Role ARN](https://i.imgur.com/iz0lufl.png)
@@ -96,6 +98,7 @@ _[AWS Doc](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_c
 _Format of the AWS SAML Role Attribute:_    
 _arn:aws:iam::account-number:role/role-name1,arn:aws:iam::account-number:saml-provider/provider-name_    
 _SAML SessionDuration Attribute in seconds_    
+
 ![User > configure attribute > AWS SAML attributes](https://i.imgur.com/ueElNNy.png)
 
 ## Check the set-up
